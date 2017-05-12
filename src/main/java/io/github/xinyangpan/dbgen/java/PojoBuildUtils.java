@@ -120,8 +120,7 @@ public class PojoBuildUtils {
 		ClassWrapper javaType = dbType.getJavaType();
 		if (dbColumn.isEnumType()) {
 			EnumType enumeratedType = null;
-			if ("varchar".equalsIgnoreCase(dbType.getSqlType())
-					||"varchar2".equalsIgnoreCase(dbType.getSqlType())) {
+			if ("varchar".equalsIgnoreCase(dbType.getSqlType()) || "varchar2".equalsIgnoreCase(dbType.getSqlType())) {
 				enumeratedType = EnumType.STRING;
 			}
 			pojoField.addAnnotationWrapper(AnnotationType.Get, new EnumeratedWrapper(enumeratedType));
