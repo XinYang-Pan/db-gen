@@ -5,9 +5,10 @@ import java.net.URL;
 
 import jxl.read.biff.BiffException;
 
-import org.blueo.commons.tostring.ToStringUtils;
 import org.blueo.db.DbTool;
 import org.blueo.db.sql.PostgresSqlBuilder;
+
+import io.github.xinyangpan.commons.tostring.ToStringUtils;
 
 public class DbToolExampleIncreamental {
 
@@ -17,7 +18,7 @@ public class DbToolExampleIncreamental {
 		DbTool dbTool = DbTool.build(url.getPath(), pre.getPath());
 		//
 		dbTool.setSqlBuilder(new PostgresSqlBuilder());
-//		dbTool.setPrintToConsole(true);
+		dbTool.setPrintToConsole(true);
 		System.out.println("********************************");
 		System.out.println(ToStringUtils.wellFormat(dbTool.getDbConfig()));
 		System.out.println("********************************");
