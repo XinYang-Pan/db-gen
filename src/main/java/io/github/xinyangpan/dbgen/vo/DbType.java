@@ -1,9 +1,8 @@
-package org.blueo.db.vo;
+package io.github.xinyangpan.dbgen.vo;
 
 import java.util.Iterator;
 
 import org.apache.commons.lang3.StringUtils;
-import org.blueo.db.vo.raw.DbColumnRawData;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
@@ -12,6 +11,7 @@ import com.google.common.primitives.Ints;
 import io.github.xinyangpan.codegen.classfile.wrapper.ClassWrapper;
 import io.github.xinyangpan.commons.CommonUtils;
 import io.github.xinyangpan.commons.ContentPiece;
+import io.github.xinyangpan.dbgen.vo.raw.DbColumnRawData;
 
 public class DbType {
 	private String rawType;

@@ -1,6 +1,6 @@
-package org.blueo.db.sql;
+package io.github.xinyangpan.dbgen.sql;
 
-import org.blueo.db.vo.DbColumn;
+import io.github.xinyangpan.dbgen.vo.DbColumn;
 
 public class PostgresSqlBuilder extends GenericSqlBuilder {
 

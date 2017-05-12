@@ -1,8 +1,8 @@
-package org.blueo.db.vo;
+package io.github.xinyangpan.dbgen.vo;
 
 import java.util.List;
 
-import org.blueo.db.config.DbTableConfig;
+import io.github.xinyangpan.dbgen.config.DbTableConfig;
 
 public class DbTable {
 	private String name;

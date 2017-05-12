@@ -1,26 +1,20 @@
-package org.blueo.db.vo.raw;
+package io.github.xinyangpan.dbgen.vo;
 
 
-public class DbColumnRawData {
-	
+public class DbColumn {
+
 	private String name;
-	private String type;
-	private String sqlType;
-	private String length;
-	private String pk;
-	private String nullable;
+	private boolean pk;
+	private boolean nullable;
 	private String comment;
-	private String enumType;
+	private boolean enumType;
+	private DbType dbType;
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("DbColumn [name=");
 		builder.append(name);
-		builder.append(", type=");
-		builder.append(type);
-		builder.append(", length=");
-		builder.append(length);
 		builder.append(", pk=");
 		builder.append(pk);
 		builder.append(", nullable=");
@@ -29,10 +23,12 @@ public class DbColumnRawData {
 		builder.append(comment);
 		builder.append(", enumType=");
 		builder.append(enumType);
+		builder.append(", dbType=");
+		builder.append(dbType);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -41,35 +37,19 @@ public class DbColumnRawData {
 		this.name = name;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getLength() {
-		return length;
-	}
-
-	public void setLength(String length) {
-		this.length = length;
-	}
-
-	public String getPk() {
+	public boolean isPk() {
 		return pk;
 	}
 
-	public void setPk(String pk) {
+	public void setPk(boolean pk) {
 		this.pk = pk;
 	}
 
-	public String getNullable() {
+	public boolean isNullable() {
 		return nullable;
 	}
 
-	public void setNullable(String nullable) {
+	public void setNullable(boolean nullable) {
 		this.nullable = nullable;
 	}
 
@@ -81,20 +61,20 @@ public class DbColumnRawData {
 		this.comment = comment;
 	}
 
-	public String getEnumType() {
+	public boolean isEnumType() {
 		return enumType;
 	}
 
-	public void setEnumType(String enumType) {
+	public void setEnumType(boolean enumType) {
 		this.enumType = enumType;
 	}
 
-	public String getSqlType() {
-		return sqlType;
+	public DbType getDbType() {
+		return dbType;
 	}
 
-	public void setSqlType(String sqlType) {
-		this.sqlType = sqlType;
+	public void setDbType(DbType dbType) {
+		this.dbType = dbType;
 	}
 
 }

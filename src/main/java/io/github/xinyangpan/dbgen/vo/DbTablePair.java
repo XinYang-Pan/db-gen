@@ -1,14 +1,14 @@
-package org.blueo.db.vo;
+package io.github.xinyangpan.dbgen.vo;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.blueo.db.sql.GenericSqlBuilder;
-
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+
+import io.github.xinyangpan.dbgen.sql.GenericSqlBuilder;
 
 public class DbTablePair {
 	// 

@@ -1,17 +1,8 @@
-package org.blueo.db;
+package io.github.xinyangpan.dbgen;
 
 import java.util.Collections;
 import java.util.Formatter;
 import java.util.List;
-
-import org.blueo.db.config.raw.DbGlobalConfigRawData;
-import org.blueo.db.java.DataLoader;
-import org.blueo.db.java.PojoBuildUtils;
-import org.blueo.db.sql.GenericSqlBuilder;
-import org.blueo.db.sql.SqlBuilder;
-import org.blueo.db.vo.DbEnum;
-import org.blueo.db.vo.DbTable;
-import org.blueo.db.vo.DbTablePair;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
@@ -20,6 +11,14 @@ import io.github.xinyangpan.codegen.classfile.pojo.EnumGenerator;
 import io.github.xinyangpan.codegen.classfile.pojo.JavaFileGenerator;
 import io.github.xinyangpan.codegen.classfile.pojo.bo.PojoClass;
 import io.github.xinyangpan.commons.FormatterWrapper;
+import io.github.xinyangpan.dbgen.config.raw.DbGlobalConfigRawData;
+import io.github.xinyangpan.dbgen.java.DataLoader;
+import io.github.xinyangpan.dbgen.java.PojoBuildUtils;
+import io.github.xinyangpan.dbgen.sql.GenericSqlBuilder;
+import io.github.xinyangpan.dbgen.sql.SqlBuilder;
+import io.github.xinyangpan.dbgen.vo.DbEnum;
+import io.github.xinyangpan.dbgen.vo.DbTable;
+import io.github.xinyangpan.dbgen.vo.DbTablePair;
 
 public class DbTool {
 	private final String excelPath;

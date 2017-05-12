@@ -1,4 +1,4 @@
-package org.blueo.db.vo;
+package io.github.xinyangpan.dbgen.vo;
 
 import java.math.BigDecimal;
 import java.util.Date;

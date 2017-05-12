@@ -1,4 +1,4 @@
-package org.blueo.example.table;
+package example;
 
 import java.io.IOException;
 

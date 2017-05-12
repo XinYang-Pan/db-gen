@@ -1,4 +1,4 @@
-package org.blueo.db.java;
+package io.github.xinyangpan.dbgen.java;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -6,17 +6,17 @@ import java.util.Map;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.ObjectUtils;
-import org.blueo.db.config.DbTableConfig;
-import org.blueo.db.config.raw.DbTableConfigRawData;
-import org.blueo.db.vo.DbColumn;
-import org.blueo.db.vo.DbEnum;
-import org.blueo.db.vo.DbType;
-import org.blueo.db.vo.TypeToJavaTypeMapping;
-import org.blueo.db.vo.raw.DbColumnRawData;
 
 import com.google.common.base.Preconditions;
 
 import io.github.xinyangpan.codegen.classfile.wrapper.ClassWrapper;
+import io.github.xinyangpan.dbgen.config.DbTableConfig;
+import io.github.xinyangpan.dbgen.config.raw.DbTableConfigRawData;
+import io.github.xinyangpan.dbgen.vo.DbColumn;
+import io.github.xinyangpan.dbgen.vo.DbEnum;
+import io.github.xinyangpan.dbgen.vo.DbType;
+import io.github.xinyangpan.dbgen.vo.TypeToJavaTypeMapping;
+import io.github.xinyangpan.dbgen.vo.raw.DbColumnRawData;
 
 public class DataLoaderUtils {
 

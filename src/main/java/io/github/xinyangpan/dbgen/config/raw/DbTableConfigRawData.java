@@ -1,4 +1,4 @@
-package org.blueo.db.config.raw;
+package io.github.xinyangpan.dbgen.config.raw;
 
 
 public class DbTableConfigRawData {

@@ -1,4 +1,4 @@
-package org.blueo.db.java;
+package io.github.xinyangpan.dbgen.java;
 
 import java.util.List;
 import java.util.Map;
@@ -11,11 +11,6 @@ import javax.persistence.Id;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.StrSubstitutor;
-import org.blueo.db.config.DbTableConfig;
-import org.blueo.db.config.raw.DbGlobalConfigRawData;
-import org.blueo.db.vo.DbColumn;
-import org.blueo.db.vo.DbTable;
-import org.blueo.db.vo.DbType;
 
 import com.google.common.base.CaseFormat;
 import com.google.common.base.Converter;
@@ -32,6 +27,11 @@ import io.github.xinyangpan.codegen.classfile.wrapper.annotation.EnumeratedWrapp
 import io.github.xinyangpan.codegen.classfile.wrapper.annotation.GeneratedValueWrapper;
 import io.github.xinyangpan.codegen.classfile.wrapper.annotation.SequenceGeneratorWrapper;
 import io.github.xinyangpan.codegen.classfile.wrapper.annotation.TableWrapper;
+import io.github.xinyangpan.dbgen.config.DbTableConfig;
+import io.github.xinyangpan.dbgen.config.raw.DbGlobalConfigRawData;
+import io.github.xinyangpan.dbgen.vo.DbColumn;
+import io.github.xinyangpan.dbgen.vo.DbTable;
+import io.github.xinyangpan.dbgen.vo.DbType;
 
 public class PojoBuildUtils {
 	private static Converter<String, String> COLUMN_NAME_TO_FIELD_NAME = CaseFormat.UPPER_UNDERSCORE.converterTo(CaseFormat.LOWER_CAMEL);

@@ -1,6 +1,6 @@
-package org.blueo.db.config;
+package io.github.xinyangpan.dbgen.config;
 
-import org.blueo.db.vo.DbType;
+import io.github.xinyangpan.dbgen.vo.DbType;
 
 public class DbTableConfig {
 	private boolean traceable;

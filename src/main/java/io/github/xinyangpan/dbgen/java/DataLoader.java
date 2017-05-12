@@ -1,4 +1,4 @@
-package org.blueo.db.java;
+package io.github.xinyangpan.dbgen.java;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -8,19 +8,19 @@ import java.util.Map;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.blueo.db.config.DbTableConfig;
-import org.blueo.db.config.raw.DbGlobalConfigRawData;
-import org.blueo.db.config.raw.DbTableConfigRawData;
-import org.blueo.db.vo.DbColumn;
-import org.blueo.db.vo.DbEnum;
-import org.blueo.db.vo.DbTable;
-import org.blueo.db.vo.DbType;
-import org.blueo.db.vo.raw.DbColumnRawData;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+import io.github.xinyangpan.dbgen.config.DbTableConfig;
+import io.github.xinyangpan.dbgen.config.raw.DbGlobalConfigRawData;
+import io.github.xinyangpan.dbgen.config.raw.DbTableConfigRawData;
+import io.github.xinyangpan.dbgen.vo.DbColumn;
+import io.github.xinyangpan.dbgen.vo.DbEnum;
+import io.github.xinyangpan.dbgen.vo.DbTable;
+import io.github.xinyangpan.dbgen.vo.DbType;
+import io.github.xinyangpan.dbgen.vo.raw.DbColumnRawData;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;

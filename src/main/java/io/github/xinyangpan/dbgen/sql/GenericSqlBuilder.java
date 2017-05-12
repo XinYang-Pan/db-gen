@@ -1,4 +1,4 @@
-package org.blueo.db.sql;
+package io.github.xinyangpan.dbgen.sql;
 
 import java.util.Formatter;
 import java.util.Iterator;
@@ -6,14 +6,14 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.blueo.db.vo.DbColumn;
-import org.blueo.db.vo.DbIndex;
-import org.blueo.db.vo.DbTable;
-import org.blueo.db.vo.DbTablePair;
 
 import com.google.common.base.Preconditions;
 
 import io.github.xinyangpan.commons.FormatterWrapper;
+import io.github.xinyangpan.dbgen.vo.DbColumn;
+import io.github.xinyangpan.dbgen.vo.DbIndex;
+import io.github.xinyangpan.dbgen.vo.DbTable;
+import io.github.xinyangpan.dbgen.vo.DbTablePair;
 
 public class GenericSqlBuilder implements SqlBuilder {
 
