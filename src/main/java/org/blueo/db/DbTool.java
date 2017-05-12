@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.Formatter;
 import java.util.List;
 
-import org.blueo.commons.FormatterWrapper;
 import org.blueo.db.config.raw.DbGlobalConfigRawData;
 import org.blueo.db.java.DataLoader;
 import org.blueo.db.java.PojoBuildUtils;
@@ -13,12 +12,14 @@ import org.blueo.db.sql.SqlBuilder;
 import org.blueo.db.vo.DbEnum;
 import org.blueo.db.vo.DbTable;
 import org.blueo.db.vo.DbTablePair;
-import org.blueo.pojogen.EnumGenerator;
-import org.blueo.pojogen.JavaFileGenerator;
-import org.blueo.pojogen.bo.PojoClass;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
+
+import io.github.xinyangpan.codegen.classfile.pojo.EnumGenerator;
+import io.github.xinyangpan.codegen.classfile.pojo.JavaFileGenerator;
+import io.github.xinyangpan.codegen.classfile.pojo.bo.PojoClass;
+import io.github.xinyangpan.commons.FormatterWrapper;
 
 public class DbTool {
 	private final String excelPath;

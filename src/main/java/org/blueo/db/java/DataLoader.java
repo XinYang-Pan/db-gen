@@ -5,10 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -22,9 +18,12 @@ import org.blueo.db.vo.DbType;
 import org.blueo.db.vo.raw.DbColumnRawData;
 
 import com.google.common.base.Splitter;
-import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
 
 public class DataLoader {
 	private enum Type{Config, Enum, TypeMapping, Table}
@@ -87,7 +86,7 @@ public class DataLoader {
 				}
 			}
 		} catch (Exception e) {
-			throw Throwables.propagate(e);
+			throw new RuntimeException(e);
 		}
 	}
 

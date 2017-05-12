@@ -19,20 +19,21 @@ import org.blueo.db.config.raw.DbGlobalConfigRawData;
 import org.blueo.db.vo.DbColumn;
 import org.blueo.db.vo.DbTable;
 import org.blueo.db.vo.DbType;
-import org.blueo.pojogen.bo.PojoClass;
-import org.blueo.pojogen.bo.PojoField;
-import org.blueo.pojogen.bo.PojoField.AnnotationType;
 import org.blueo.pojogen.bo.wrapper.annotation.AnnotationWrapperUtils;
-import org.blueo.pojogen.bo.wrapper.annotation.buildin.EnumeratedWrapper;
-import org.blueo.pojogen.bo.wrapper.annotation.buildin.GeneratedValueWrapper;
-import org.blueo.pojogen.bo.wrapper.annotation.buildin.SequenceGeneratorWrapper;
-import org.blueo.pojogen.bo.wrapper.clazz.ClassWrapper;
 import org.springframework.stereotype.Repository;
 
 import com.google.common.base.CaseFormat;
 import com.google.common.base.Converter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+
+import io.github.xinyangpan.codegen.classfile.pojo.bo.PojoClass;
+import io.github.xinyangpan.codegen.classfile.pojo.bo.PojoField;
+import io.github.xinyangpan.codegen.classfile.pojo.bo.PojoField.AnnotationType;
+import io.github.xinyangpan.codegen.classfile.wrapper.ClassWrapper;
+import io.github.xinyangpan.codegen.classfile.wrapper.annotation.EnumeratedWrapper;
+import io.github.xinyangpan.codegen.classfile.wrapper.annotation.GeneratedValueWrapper;
+import io.github.xinyangpan.codegen.classfile.wrapper.annotation.SequenceGeneratorWrapper;
 
 public class PojoBuildUtils {
 	private static Converter<String, String> COLUMN_NAME_TO_FIELD_NAME = CaseFormat.UPPER_UNDERSCORE.converterTo(CaseFormat.LOWER_CAMEL);

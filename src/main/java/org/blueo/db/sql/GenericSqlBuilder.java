@@ -6,12 +6,14 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.blueo.commons.FormatterWrapper;
 import org.blueo.db.vo.DbColumn;
 import org.blueo.db.vo.DbIndex;
 import org.blueo.db.vo.DbTable;
 import org.blueo.db.vo.DbTablePair;
-import org.springframework.util.Assert;
+
+import com.google.common.base.Preconditions;
+
+import io.github.xinyangpan.commons.FormatterWrapper;
 
 public class GenericSqlBuilder implements SqlBuilder {
 
@@ -115,7 +117,7 @@ public class GenericSqlBuilder implements SqlBuilder {
 	}
 
 	public String createIndexSql(DbTable dbTable) {
-		Assert.notNull(dbTable);
+		Preconditions.checkNotNull(dbTable);
 		List<DbIndex> dbIndexs = dbTable.getDbIndexs();
 		if (CollectionUtils.isEmpty(dbIndexs)) {
 			return null;

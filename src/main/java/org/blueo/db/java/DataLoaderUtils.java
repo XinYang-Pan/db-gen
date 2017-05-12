@@ -13,10 +13,10 @@ import org.blueo.db.vo.DbEnum;
 import org.blueo.db.vo.DbType;
 import org.blueo.db.vo.TypeToJavaTypeMapping;
 import org.blueo.db.vo.raw.DbColumnRawData;
-import org.blueo.pojogen.bo.wrapper.clazz.ClassWrapper;
-import org.springframework.util.Assert;
 
 import com.google.common.base.Preconditions;
+
+import io.github.xinyangpan.codegen.classfile.wrapper.ClassWrapper;
 
 public class DataLoaderUtils {
 
@@ -38,8 +38,8 @@ public class DataLoaderUtils {
 		dbType.setJavaType(ClassWrapper.of(TypeToJavaTypeMapping.getJavaType(dbType.getRawType())));
 		return dbType;
 	}
-	
-	public static DbColumnRawData buildDbColumnRawData(Map<String, String> valueColumnName) throws IllegalAccessException, InvocationTargetException  {
+
+	public static DbColumnRawData buildDbColumnRawData(Map<String, String> valueColumnName) throws IllegalAccessException, InvocationTargetException {
 		DbColumnRawData dbColumnRawData = new DbColumnRawData();
 		BeanUtils.populate(dbColumnRawData, valueColumnName);
 		return dbColumnRawData;
@@ -53,7 +53,7 @@ public class DataLoaderUtils {
 	}
 
 	public static DbColumn buildDbColumn(DbColumnRawData dbColumnRawData, Map<String, DbEnum> name2dbEnumsMap) {
-		Assert.notNull(dbColumnRawData);
+		Preconditions.checkNotNull(dbColumnRawData);
 		DbColumn dbColumn = new DbColumn();
 		dbColumn.setName(dbColumnRawData.getName());
 		dbColumn.setPk(BooleanUtils.toBoolean(ObjectUtils.firstNonNull(dbColumnRawData.getPk(), "false")));
@@ -70,5 +70,5 @@ public class DataLoaderUtils {
 		dbColumn.setComment(dbColumnRawData.getComment());
 		return dbColumn;
 	}
-	
+
 }

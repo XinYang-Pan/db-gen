@@ -3,14 +3,15 @@ package org.blueo.db.vo;
 import java.util.Iterator;
 
 import org.apache.commons.lang3.StringUtils;
-import org.blueo.commons.text.BlueoStrs;
 import org.blueo.db.vo.raw.DbColumnRawData;
-import org.blueo.pojogen.bo.wrapper.clazz.ClassWrapper;
-import org.javatuples.Triplet;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.primitives.Ints;
+
+import io.github.xinyangpan.codegen.classfile.wrapper.ClassWrapper;
+import io.github.xinyangpan.commons.CommonUtils;
+import io.github.xinyangpan.commons.ContentPiece;
 
 public class DbType {
 	private String rawType;
@@ -44,9 +45,9 @@ public class DbType {
 	}
 
 	public static DbType of(String fullTypeName) {
-		Triplet<String, String, String> texts = BlueoStrs.parse(fullTypeName, '(', ')');
-		String parameterizedTypeStr = texts.getValue0();
-		String typeName = texts.getValue1();
+		ContentPiece contentPiece = CommonUtils.splitContent(fullTypeName, '(', ')');
+		String parameterizedTypeStr = contentPiece.getTarget();
+		String typeName = contentPiece.getBefore();
 		if (parameterizedTypeStr == null) {
 			return new DbType(typeName);
 		}
