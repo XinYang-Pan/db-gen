@@ -32,6 +32,9 @@ import io.github.xinyangpan.dbgen.config.raw.DbGlobalConfigRawData;
 import io.github.xinyangpan.dbgen.vo.DbColumn;
 import io.github.xinyangpan.dbgen.vo.DbTable;
 import io.github.xinyangpan.dbgen.vo.DbType;
+import io.github.xinyangpan.persistent.dao.po.activeable.ActiveablePo;
+import io.github.xinyangpan.persistent.dao.po.id.HasId;
+import io.github.xinyangpan.persistent.dao.po.traceable.TraceablePo;
 
 public class PojoBuildUtils {
 	private static Converter<String, String> COLUMN_NAME_TO_FIELD_NAME = CaseFormat.UPPER_UNDERSCORE.converterTo(CaseFormat.LOWER_CAMEL);
@@ -81,13 +84,13 @@ public class PojoBuildUtils {
 			pojoClass.addInterfaces(ClassWrapper.of(className));
 		}
 		if (dbTableConfig.isTraceable()) {
-//			pojoClass.addInterfaces(ClassWrapper.of(TraceablePo.class, dbTableConfig.getTraceType().getJavaType().getFullName()));
+			pojoClass.addInterfaces(ClassWrapper.of(TraceablePo.class, dbTableConfig.getTraceType().getJavaType().getFullName()));
 		}
 		if (dbTableConfig.isActiveable()) {
-//			pojoClass.addInterfaces(ClassWrapper.of(ActiveablePo.class));
+			pojoClass.addInterfaces(ClassWrapper.of(ActiveablePo.class));
 		}
 		if (dbTableConfig.isHasId()) {
-//			pojoClass.addInterfaces(ClassWrapper.of(HasId.class, dbTableConfig.getIdType().getJavaType().getFullName()));
+			pojoClass.addInterfaces(ClassWrapper.of(HasId.class, dbTableConfig.getIdType().getJavaType().getFullName()));
 		}
 		return pojoClass;
 	}

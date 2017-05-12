@@ -44,12 +44,17 @@
 			<groupId>io.github.xinyang-pan</groupId>
 			<artifactId>codegen</artifactId>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>io.github.xinyang-pan</groupId>
+			<artifactId>persistent</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils-core</artifactId>
@@ -89,11 +94,17 @@
 			</dependency>
 
 			<dependency>
+				<groupId>io.github.xinyang-pan</groupId>
+				<artifactId>persistent</artifactId>
+				<version>0.0.1-beta</version>
+			</dependency>
+
+			<dependency>
 				<groupId>javax.persistence</groupId>
 				<artifactId>persistence-api</artifactId>
 				<version>1.0.2</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils-core</artifactId>
