@@ -1,5 +1,6 @@
 package io.github.xinyangpan.dbgen.java;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -16,10 +17,11 @@ import com.google.common.base.CaseFormat;
 import com.google.common.base.Converter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
-import io.github.xinyangpan.codegen.classfile.pojo.bo.PojoClass;
-import io.github.xinyangpan.codegen.classfile.pojo.bo.PojoField;
-import io.github.xinyangpan.codegen.classfile.pojo.bo.PojoField.AnnotationType;
+import io.github.xinyangpan.codegen.classfile.pojo.PojoField;
+import io.github.xinyangpan.codegen.classfile.pojo.PojoField.AnnotationType;
+import io.github.xinyangpan.codegen.classfile.type.ClassType;
 import io.github.xinyangpan.codegen.classfile.wrapper.AnnotationWrapper;
 import io.github.xinyangpan.codegen.classfile.wrapper.ClassWrapper;
 import io.github.xinyangpan.codegen.classfile.wrapper.annotation.ColumnWrapper;
@@ -40,11 +42,11 @@ public class PojoBuildUtils {
 	private static Converter<String, String> COLUMN_NAME_TO_FIELD_NAME = CaseFormat.UPPER_UNDERSCORE.converterTo(CaseFormat.LOWER_CAMEL);
 	private static Converter<String, String> TABLE_NAME_TO_CLASS_NAME = CaseFormat.UPPER_UNDERSCORE.converterTo(CaseFormat.UPPER_CAMEL);
 
-	public static PojoClass buildDaoClass(PojoClass poClass, DbGlobalConfigRawData dbConfig) {
-		PojoClass daoClass = new PojoClass();
+	public static ClassType buildDaoClass(ClassType poClass, DbGlobalConfigRawData dbConfig) {
+		ClassType daoClass = new ClassType();
 		daoClass.setPackageName(dbConfig.getDaoPackage());
 		daoClass.setName(String.format("%sDao", poClass.getName()));
-		daoClass.addAnnotationWrapper(new AnnotationWrapper(ClassWrapper.of("org.springframework.stereotype.Repository")));
+		daoClass.setAnnotationWrappers(Lists.newArrayList(new AnnotationWrapper(ClassWrapper.of("org.springframework.stereotype.Repository"))));
 		//
 		Map<String, String> valueMap = Maps.newHashMap();
 		valueMap.put("poName", poClass.getFullName());
@@ -52,9 +54,10 @@ public class PojoBuildUtils {
 		//
 		daoClass.setSuperClass(ClassWrapper.of(superClassString));
 		return daoClass;
+
 	}
 
-	public static PojoClass buildEntityClass(DbTable dbTable, DbGlobalConfigRawData dbConfig) {
+	public static ClassType buildEntityClass(DbTable dbTable, DbGlobalConfigRawData dbConfig) {
 		if (dbTable == null) {
 			return null;
 		}
@@ -69,30 +72,35 @@ public class PojoBuildUtils {
 			pojoFields.add(buildEntityField(dbTable, dbColumn, dbConfig, false));
 		}
 		//
-		PojoClass pojoClass = new PojoClass();
-		pojoClass.setPackageName(dbConfig.getPoPackage());
-		pojoClass.setEntityFields(pojoFields);
-		pojoClass.setName(TABLE_NAME_TO_CLASS_NAME.convert(dbTable.getName()));
-		pojoClass.addAnnotation(Entity.class);
-		pojoClass.addAnnotationWrapper(new TableWrapper(dbTable.getName()));
+		ClassType classType = new ClassType();
+		classType.setPackageName(dbConfig.getPoPackage());
+		classType.setName(TABLE_NAME_TO_CLASS_NAME.convert(dbTable.getName()));
+		// Annotations
+		classType.setAnnotationWrappers(Lists.newArrayList(new AnnotationWrapper(Entity.class), new TableWrapper(dbTable.getName())));
+		// Fields and Methods
+		classType.addPojoFields(pojoFields);
+		// Super Class
 		String poSuperclass = dbConfig.getPoSuperclass();
 		if (poSuperclass != null) {
-			pojoClass.setSuperClass(ClassWrapper.of(poSuperclass));
+			classType.setSuperClass(ClassWrapper.of(poSuperclass));
 		}
+		// Interface
 		List<String> poInterfacesInList = dbConfig.getPoInterfacesInList();
+		LinkedHashSet<ClassWrapper> interfaces = Sets.newLinkedHashSet();
 		for (String className : poInterfacesInList) {
-			pojoClass.addInterfaces(ClassWrapper.of(className));
+			interfaces.add(ClassWrapper.of(className));
 		}
 		if (dbTableConfig.isTraceable()) {
-			pojoClass.addInterfaces(ClassWrapper.of(TraceablePo.class, dbTableConfig.getTraceType().getJavaType().getFullName()));
+			interfaces.add(ClassWrapper.of(TraceablePo.class, dbTableConfig.getTraceType().getJavaType().getFullName()));
 		}
 		if (dbTableConfig.isActiveable()) {
-			pojoClass.addInterfaces(ClassWrapper.of(ActiveablePo.class));
+			interfaces.add(ClassWrapper.of(ActiveablePo.class));
 		}
 		if (dbTableConfig.isHasId()) {
-			pojoClass.addInterfaces(ClassWrapper.of(HasId.class, dbTableConfig.getIdType().getJavaType().getFullName()));
+			interfaces.add(ClassWrapper.of(HasId.class, dbTableConfig.getIdType().getJavaType().getFullName()));
 		}
-		return pojoClass;
+		classType.setInterfaces(interfaces);
+		return classType;
 	}
 
 	private static PojoField buildEntityField(DbTable dbTable, DbColumn dbColumn, DbGlobalConfigRawData dbConfig, boolean isPk) {

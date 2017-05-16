@@ -7,9 +7,8 @@ import java.util.List;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 
-import io.github.xinyangpan.codegen.classfile.pojo.EnumGenerator;
-import io.github.xinyangpan.codegen.classfile.pojo.JavaFileGenerator;
-import io.github.xinyangpan.codegen.classfile.pojo.bo.PojoClass;
+import io.github.xinyangpan.codegen.classfile.type.ClassType;
+import io.github.xinyangpan.codegen.classfile.type.EnumType;
 import io.github.xinyangpan.commons.FormatterWrapper;
 import io.github.xinyangpan.dbgen.config.raw.DbGlobalConfigRawData;
 import io.github.xinyangpan.dbgen.java.DataLoader;
@@ -97,31 +96,29 @@ public class DbTool {
 	
 	public void generateEnums() {
 		for (DbEnum dbEnum : dbEnums) {
-			PojoClass pojoClass = new PojoClass();
-			pojoClass.setPackageName(dbEnum.getPackageName());
-			pojoClass.setName(dbEnum.getName());
 			// 
-			EnumGenerator enumGenerator;
+			EnumType enumType = new EnumType();
+			enumType.setPackageName(dbEnum.getPackageName());
+			enumType.setName(dbEnum.getName());
+			enumType.setValues(dbEnum.getValues());
 			if (printToConsole) {
-				enumGenerator = new EnumGenerator(pojoClass);
+				enumType.processToConsole();
 			} else {
-				enumGenerator = new EnumGenerator(pojoClass, dbConfig.getSourceDir());
+				enumType.processToFile(dbConfig.getSourceDir());
 			}
-			enumGenerator.setValues(dbEnum.getValues());
-			enumGenerator.generateClassCode();
 		}
 	}
 	
 	public void generatePoAndDaos() {
 		for (DbTablePair dbTablePair : dbTablePairs) {
-			PojoClass pojoClass = PojoBuildUtils.buildEntityClass(dbTablePair.getCurrent(), dbConfig);
-			PojoClass daoClass = PojoBuildUtils.buildDaoClass(pojoClass, dbConfig);
+			ClassType poClass = PojoBuildUtils.buildEntityClass(dbTablePair.getCurrent(), dbConfig);
+			ClassType daoClass = PojoBuildUtils.buildDaoClass(poClass, dbConfig);
 			if (printToConsole) {
-				new JavaFileGenerator(pojoClass).generateClassCode();
-				new JavaFileGenerator(daoClass).generateClassCode();
+				poClass.processToConsole();
+				daoClass.processToConsole();
 			} else {
-				new JavaFileGenerator(pojoClass, dbConfig.getSourceDir()).generateClassCode();
-				new JavaFileGenerator(daoClass, dbConfig.getSourceDir()).generateClassCode();
+				poClass.processToFile(dbConfig.getSourceDir());
+				daoClass.processToFile(dbConfig.getSourceDir());
 			}
 		}
 	}
