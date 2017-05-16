@@ -6,12 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Enumerated;
 import java.io.Serializable;
 import java.util.Date;
-import io.github.xinyangpan.persistent.dao.po.traceable.TraceablePo;
 import javax.persistence.Entity;
-import io.github.xinyangpan.persistent.dao.po.activeable.ActiveablePo;
+import io.github.xinyangpan.persistent.dao.po.traceable.TraceablePo;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import io.github.xinyangpan.persistent.dao.po.id.HasId;
+import javax.persistence.Table;
+import io.github.xinyangpan.persistent.dao.po.activeable.ActiveablePo;
 import sample.persistent.enums.PersonSex;
 
 @Entity
@@ -131,6 +131,31 @@ public class TblPerson implements Serializable, TraceablePo<Long>, ActiveablePo,
 	@Column(name = "ACTIVE_FLAG")
 	public void setActiveFlag(Boolean activeFlag) {
 		this.activeFlag = activeFlag;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TblPerson [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", age=");
+		builder.append(age);
+		builder.append(", sex=");
+		builder.append(sex);
+		builder.append(", createId=");
+		builder.append(createId);
+		builder.append(", updateId=");
+		builder.append(updateId);
+		builder.append(", createTime=");
+		builder.append(createTime);
+		builder.append(", updateTime=");
+		builder.append(updateTime);
+		builder.append(", activeFlag=");
+		builder.append(activeFlag);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

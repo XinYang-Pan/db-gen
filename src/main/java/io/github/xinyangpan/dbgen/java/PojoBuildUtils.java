@@ -19,6 +19,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+import io.github.xinyangpan.codegen.Tools;
 import io.github.xinyangpan.codegen.classfile.pojo.PojoField;
 import io.github.xinyangpan.codegen.classfile.pojo.PojoField.AnnotationType;
 import io.github.xinyangpan.codegen.classfile.type.ClassType;
@@ -79,6 +80,7 @@ public class PojoBuildUtils {
 		classType.setAnnotationWrappers(Lists.newArrayList(new AnnotationWrapper(Entity.class), new TableWrapper(dbTable.getName()), new AnnotationWrapper(SuppressWarnings.class, "(\"serial\")")));
 		// Fields and Methods
 		classType.addPojoFields(pojoFields);
+		classType.getMethodParts().add(Tools.generateToString(classType.getFieldParts()));
 		// Super Class
 		String poSuperclass = dbConfig.getPoSuperclass();
 		if (poSuperclass != null) {
