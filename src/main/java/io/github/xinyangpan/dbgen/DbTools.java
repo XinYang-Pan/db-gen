@@ -19,7 +19,7 @@ import io.github.xinyangpan.dbgen.vo.DbEnum;
 import io.github.xinyangpan.dbgen.vo.DbTable;
 import io.github.xinyangpan.dbgen.vo.DbTablePair;
 
-public class DbTool {
+public class DbTools {
 	private final String excelPath;
 	private String previousExcelPath;
 	private boolean printToConsole;
@@ -29,22 +29,22 @@ public class DbTool {
 	private List<DbTablePair> dbTablePairs;
 	private List<DbEnum> dbEnums;
 	
-	private DbTool(String excelPath) {
+	private DbTools(String excelPath) {
 		super();
 		this.excelPath = excelPath;
 	}
 
-	public static DbTool build(String excelPath) {
-		DbTool dbTool = new DbTool(excelPath);
-		dbTool.init();
-		return dbTool;
+	public static DbTools build(String excelPath) {
+		DbTools dbTools = new DbTools(excelPath);
+		dbTools.init();
+		return dbTools;
 	}
 
-	public static DbTool build(String excelPath, String previousExcelPath) {
-		DbTool dbTool = new DbTool(excelPath);
-		dbTool.previousExcelPath = previousExcelPath;
-		dbTool.init();
-		return dbTool;
+	public static DbTools build(String excelPath, String previousExcelPath) {
+		DbTools dbTools = new DbTools(excelPath);
+		dbTools.previousExcelPath = previousExcelPath;
+		dbTools.init();
+		return dbTools;
 	}
 	
 	private void init() {

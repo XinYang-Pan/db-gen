@@ -5,7 +5,7 @@ import java.net.URL;
 
 import jxl.read.biff.BiffException;
 import io.github.xinyangpan.commons.tostring.ToStringUtils;
-import io.github.xinyangpan.dbgen.DbTool;
+import io.github.xinyangpan.dbgen.DbTools;
 import io.github.xinyangpan.dbgen.sql.PostgresSqlBuilder;
 
 public class DbToolIncreamentalExamples {
@@ -13,18 +13,18 @@ public class DbToolIncreamentalExamples {
 	public static void main(String[] args) throws BiffException, IOException {
 		URL url = DbToolIncreamentalExamples.class.getResource("test1.xls");
 		URL pre = DbToolIncreamentalExamples.class.getResource("test0.xls");
-		DbTool dbTool = DbTool.build(url.getPath(), pre.getPath());
+		DbTools dbTools = DbTools.build(url.getPath(), pre.getPath());
 		//
-		dbTool.setSqlBuilder(new PostgresSqlBuilder());
-		dbTool.setPrintToConsole(true);
+		dbTools.setSqlBuilder(new PostgresSqlBuilder());
+		dbTools.setPrintToConsole(true);
 		System.out.println("********************************");
-		System.out.println(ToStringUtils.wellFormat(dbTool.getDbConfig()));
+		System.out.println(ToStringUtils.wellFormat(dbTools.getDbConfig()));
 		System.out.println("********************************");
-		dbTool.generateCreateDdls();
+		dbTools.generateCreateDdls();
 		System.out.println("********************************");
-		dbTool.generateEnums();
+		dbTools.generateEnums();
 		System.out.println("********************************");
-		dbTool.generatePoAndDaos();
+		dbTools.generatePoAndDaos();
 		System.out.println("********************************");
 	}
 
