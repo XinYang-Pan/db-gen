@@ -75,8 +75,8 @@ public class PojoBuildUtils {
 		ClassType classType = new ClassType();
 		classType.setPackageName(dbConfig.getPoPackage());
 		classType.setName(TABLE_NAME_TO_CLASS_NAME.convert(dbTable.getName()));
-		// Annotations
-		classType.setAnnotationWrappers(Lists.newArrayList(new AnnotationWrapper(Entity.class), new TableWrapper(dbTable.getName())));
+		// Annotations 
+		classType.setAnnotationWrappers(Lists.newArrayList(new AnnotationWrapper(Entity.class), new TableWrapper(dbTable.getName()), new AnnotationWrapper(SuppressWarnings.class, "(\"serial\")")));
 		// Fields and Methods
 		classType.addPojoFields(pojoFields);
 		// Super Class
