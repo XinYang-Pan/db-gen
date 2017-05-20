@@ -80,7 +80,7 @@ public class PojoBuildUtils {
 		classType.setAnnotationWrappers(Lists.newArrayList(new AnnotationWrapper(Entity.class), new TableWrapper(dbTable.getName()), new AnnotationWrapper(SuppressWarnings.class, "(\"serial\")")));
 		// Fields and Methods
 		classType.addPojoFields(pojoFields);
-		classType.getMethodParts().add(Tools.generateToString(classType.getFieldParts()));
+		classType.getMethodParts().add(Tools.generateToString(classType.getFieldParts(), classType.getName()));
 		// Super Class
 		String poSuperclass = dbConfig.getPoSuperclass();
 		if (poSuperclass != null) {
