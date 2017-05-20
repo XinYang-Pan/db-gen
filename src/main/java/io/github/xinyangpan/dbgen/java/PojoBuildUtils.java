@@ -19,7 +19,6 @@ import com.google.common.collect.Maps;
 
 import io.github.xinyangpan.codegen.Tools;
 import io.github.xinyangpan.codegen.classfile.pojo.PojoField;
-import io.github.xinyangpan.codegen.classfile.pojo.PojoField.AnnotationType;
 import io.github.xinyangpan.codegen.classfile.type.ClassType;
 import io.github.xinyangpan.codegen.classfile.wrapper.AnnotationWrapper;
 import io.github.xinyangpan.codegen.classfile.wrapper.ClassWrapper;
@@ -108,20 +107,20 @@ public class PojoBuildUtils {
 		PojoField pojoField = new PojoField();
 		pojoField.setName(COLUMN_NAME_TO_FIELD_NAME.convert(dbColumn.getName()));
 		if (isPk) {
-			pojoField.addAnnotation(AnnotationType.Get, Id.class);
+			pojoField.addGetterAnnotation(Id.class);
 			String seq = dbTable.getSeq();
 			if (StringUtils.isEmpty(seq)) {
-				pojoField.addAnnotation(AnnotationType.Get, GeneratedValue.class);
+				pojoField.addGetterAnnotation(GeneratedValue.class);
 			} else {
 				// 
 				Converter<String, String> converter = CaseFormat.UPPER_UNDERSCORE.converterTo(CaseFormat.LOWER_CAMEL);
 				String seqGenName = converter.convert(seq);
 				// 
-				pojoField.addAnnotationWrapper(AnnotationType.Get, new SequenceGeneratorWrapper(seqGenName, seq));
-				pojoField.addAnnotationWrapper(AnnotationType.Get, new GeneratedValueWrapper(GenerationType.SEQUENCE, seqGenName));
+				pojoField.addGetterAnnotationWrapper(new SequenceGeneratorWrapper(seqGenName, seq));
+				pojoField.addGetterAnnotationWrapper(new GeneratedValueWrapper(GenerationType.SEQUENCE, seqGenName));
 			}
 		}
-		pojoField.addAnnotationWrapper(AnnotationType.Get, new ColumnWrapper(dbColumn.getName()));
+		pojoField.addGetterAnnotationWrapper(new ColumnWrapper(dbColumn.getName()));
 		DbType dbType = dbColumn.getDbType();
 		ClassWrapper javaType = dbType.getJavaType();
 		if (dbColumn.isEnumType()) {
@@ -129,7 +128,7 @@ public class PojoBuildUtils {
 			if ("varchar".equalsIgnoreCase(dbType.getSqlType()) || "varchar2".equalsIgnoreCase(dbType.getSqlType())) {
 				enumeratedType = EnumType.STRING;
 			}
-			pojoField.addAnnotationWrapper(AnnotationType.Get, new EnumeratedWrapper(enumeratedType));
+			pojoField.addGetterAnnotationWrapper(new EnumeratedWrapper(enumeratedType));
 			pojoField.setType(javaType);
 		} else {
 			pojoField.setType(javaType);
