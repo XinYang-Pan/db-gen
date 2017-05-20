@@ -1,18 +1,18 @@
 package sample.persistent.po;
 
-import javax.persistence.Enumerated;
-import sample.persistent.enums.PersonSex;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Table;
 import io.github.xinyangpan.persistent.dao.po.traceable.TraceablePo;
-import javax.persistence.Column;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+import java.io.Serializable;
 import javax.persistence.Id;
-import javax.persistence.EnumType;
+import java.util.Date;
+import javax.persistence.GeneratedValue;
 import io.github.xinyangpan.persistent.dao.po.id.HasId;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import sample.persistent.enums.PersonSex;
 import io.github.xinyangpan.persistent.dao.po.activeable.ActiveablePo;
+import javax.persistence.Column;
 
 @Entity
 @Table(name = "TBL_PERSON")
