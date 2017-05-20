@@ -1,6 +1,5 @@
 package io.github.xinyangpan.dbgen.java;
 
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +16,6 @@ import com.google.common.base.CaseFormat;
 import com.google.common.base.Converter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 
 import io.github.xinyangpan.codegen.Tools;
 import io.github.xinyangpan.codegen.classfile.pojo.PojoField;
@@ -47,7 +45,7 @@ public class PojoBuildUtils {
 		ClassType daoClass = new ClassType();
 		daoClass.setPackageName(dbConfig.getDaoPackage());
 		daoClass.setName(String.format("%sDao", poClass.getName()));
-		daoClass.setAnnotationWrappers(Lists.newArrayList(new AnnotationWrapper(ClassWrapper.of("org.springframework.stereotype.Repository"))));
+		daoClass.addAnnotationWrapper(new AnnotationWrapper(ClassWrapper.of("org.springframework.stereotype.Repository")));
 		//
 		Map<String, String> valueMap = Maps.newHashMap();
 		valueMap.put("poName", poClass.getFullName());
@@ -77,7 +75,7 @@ public class PojoBuildUtils {
 		classType.setPackageName(dbConfig.getPoPackage());
 		classType.setName(TABLE_NAME_TO_CLASS_NAME.convert(dbTable.getName()));
 		// Annotations 
-		classType.setAnnotationWrappers(Lists.newArrayList(new AnnotationWrapper(Entity.class), new TableWrapper(dbTable.getName()), new AnnotationWrapper(SuppressWarnings.class, "(\"serial\")")));
+		classType.addAnnotationWrappers(new AnnotationWrapper(Entity.class), new TableWrapper(dbTable.getName()), new AnnotationWrapper(SuppressWarnings.class, "(\"serial\")"));
 		// Fields and Methods
 		classType.addPojoFields(pojoFields);
 		classType.getMethodParts().add(Tools.generateToString(classType.getFieldParts(), classType.getName()));
@@ -88,20 +86,18 @@ public class PojoBuildUtils {
 		}
 		// Interface
 		List<String> poInterfacesInList = dbConfig.getPoInterfacesInList();
-		LinkedHashSet<ClassWrapper> interfaces = Sets.newLinkedHashSet();
 		for (String className : poInterfacesInList) {
-			interfaces.add(ClassWrapper.of(className));
+			classType.addInterface(ClassWrapper.of(className));
 		}
 		if (dbTableConfig.isTraceable()) {
-			interfaces.add(ClassWrapper.of(TraceablePo.class, dbTableConfig.getTraceType().getJavaType().getFullName()));
+			classType.addInterface(ClassWrapper.of(TraceablePo.class, dbTableConfig.getTraceType().getJavaType().getFullName()));
 		}
 		if (dbTableConfig.isActiveable()) {
-			interfaces.add(ClassWrapper.of(ActiveablePo.class));
+			classType.addInterface(ActiveablePo.class);
 		}
 		if (dbTableConfig.isHasId()) {
-			interfaces.add(ClassWrapper.of(HasId.class, dbTableConfig.getIdType().getJavaType().getFullName()));
+			classType.addInterface(ClassWrapper.of(HasId.class, dbTableConfig.getIdType().getJavaType().getFullName()));
 		}
-		classType.setInterfaces(interfaces);
 		return classType;
 	}
 
