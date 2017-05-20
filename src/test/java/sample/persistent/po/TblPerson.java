@@ -1,18 +1,18 @@
 package sample.persistent.po;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Enumerated;
+import sample.persistent.enums.PersonSex;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Entity;
-import io.github.xinyangpan.persistent.dao.po.traceable.TraceablePo;
-import javax.persistence.Id;
-import io.github.xinyangpan.persistent.dao.po.id.HasId;
 import javax.persistence.Table;
+import io.github.xinyangpan.persistent.dao.po.traceable.TraceablePo;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.EnumType;
+import io.github.xinyangpan.persistent.dao.po.id.HasId;
 import io.github.xinyangpan.persistent.dao.po.activeable.ActiveablePo;
-import sample.persistent.enums.PersonSex;
 
 @Entity
 @Table(name = "TBL_PERSON")
@@ -44,9 +44,6 @@ public class TblPerson implements Serializable, TraceablePo<Long>, ActiveablePo,
 		return this.id;
 	}
 
-	@Id
-	@GeneratedValue
-	@Column(name = "ID")
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -56,7 +53,6 @@ public class TblPerson implements Serializable, TraceablePo<Long>, ActiveablePo,
 		return this.name;
 	}
 
-	@Column(name = "NAME")
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -66,7 +62,6 @@ public class TblPerson implements Serializable, TraceablePo<Long>, ActiveablePo,
 		return this.age;
 	}
 
-	@Column(name = "AGE")
 	public void setAge(Integer age) {
 		this.age = age;
 	}
@@ -77,8 +72,6 @@ public class TblPerson implements Serializable, TraceablePo<Long>, ActiveablePo,
 		return this.sex;
 	}
 
-	@Column(name = "SEX")
-	@Enumerated(EnumType.STRING)
 	public void setSex(PersonSex sex) {
 		this.sex = sex;
 	}
@@ -88,7 +81,6 @@ public class TblPerson implements Serializable, TraceablePo<Long>, ActiveablePo,
 		return this.createId;
 	}
 
-	@Column(name = "CREATE_ID")
 	public void setCreateId(Long createId) {
 		this.createId = createId;
 	}
@@ -98,7 +90,6 @@ public class TblPerson implements Serializable, TraceablePo<Long>, ActiveablePo,
 		return this.updateId;
 	}
 
-	@Column(name = "UPDATE_ID")
 	public void setUpdateId(Long updateId) {
 		this.updateId = updateId;
 	}
@@ -108,7 +99,6 @@ public class TblPerson implements Serializable, TraceablePo<Long>, ActiveablePo,
 		return this.createTime;
 	}
 
-	@Column(name = "CREATE_TIME")
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
@@ -118,7 +108,6 @@ public class TblPerson implements Serializable, TraceablePo<Long>, ActiveablePo,
 		return this.updateTime;
 	}
 
-	@Column(name = "UPDATE_TIME")
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
@@ -128,7 +117,6 @@ public class TblPerson implements Serializable, TraceablePo<Long>, ActiveablePo,
 		return this.activeFlag;
 	}
 
-	@Column(name = "ACTIVE_FLAG")
 	public void setActiveFlag(Boolean activeFlag) {
 		this.activeFlag = activeFlag;
 	}
