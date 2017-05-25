@@ -17,7 +17,6 @@ import com.google.common.base.Converter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-import io.github.xinyangpan.codegen.Tools;
 import io.github.xinyangpan.codegen.classfile.pojo.PojoField;
 import io.github.xinyangpan.codegen.classfile.type.ClassType;
 import io.github.xinyangpan.codegen.classfile.wrapper.AnnotationWrapper;
@@ -27,6 +26,7 @@ import io.github.xinyangpan.codegen.classfile.wrapper.annotation.EnumeratedWrapp
 import io.github.xinyangpan.codegen.classfile.wrapper.annotation.GeneratedValueWrapper;
 import io.github.xinyangpan.codegen.classfile.wrapper.annotation.SequenceGeneratorWrapper;
 import io.github.xinyangpan.codegen.classfile.wrapper.annotation.TableWrapper;
+import io.github.xinyangpan.codegen.tool.Tools;
 import io.github.xinyangpan.dbgen.config.DbTableConfig;
 import io.github.xinyangpan.dbgen.config.raw.DbGlobalConfigRawData;
 import io.github.xinyangpan.dbgen.vo.DbColumn;
